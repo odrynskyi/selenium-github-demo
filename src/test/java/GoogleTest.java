@@ -37,7 +37,7 @@ public class GoogleTest {
         WebDriver iExplorerDriver = new InternetExplorerDriver();
         iExplorerDriver.get("https://www.google.com.ua");
         iExplorerDriver.manage().window().maximize();
-        iExplorerDriver.findElement(searchField).sendKeys("WebDriver"); //Unable to find element with xpath == //*[@id='lst-ib']
+        iExplorerDriver.findElement(searchField).sendKeys("WebDriver"); //Unable to find element with xpath == //*[@id='lst-ib'].
         iExplorerDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         iExplorerDriver.findElement(searchButton).click();
         iExplorerDriver.quit();
