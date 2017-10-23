@@ -1,3 +1,6 @@
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +15,7 @@ public class GoogleTest {
 
     @Test
     public void chromeGoogleTest() {
+        ChromeDriverManager.getInstance().setup();
         WebDriver chromeDriver = new ChromeDriver();
         chromeDriver.get("https://www.google.com.ua");
         chromeDriver.manage().window().maximize();
@@ -23,6 +27,7 @@ public class GoogleTest {
 
     @Test
     public void firefoxGoogleTest(){
+        FirefoxDriverManager.getInstance().setup();
         WebDriver firefoxDriver = new FirefoxDriver();
         firefoxDriver.get("https://www.google.com.ua");
         firefoxDriver.manage().window().maximize();
@@ -34,6 +39,7 @@ public class GoogleTest {
 
     @Test
     public void iExplorerGoogleTest(){
+        InternetExplorerDriverManager.getInstance().arch32().setup();
         WebDriver iExplorerDriver = new InternetExplorerDriver();
         iExplorerDriver.get("https://www.google.com.ua");
         iExplorerDriver.manage().window().maximize();
