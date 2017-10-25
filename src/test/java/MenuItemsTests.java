@@ -7,7 +7,7 @@ import java.util.List;
 public class MenuItemsTests extends LoginPage{
 
     @Test
-    public void MenuItems() {
+    public void MenuItems(){
 
         List<WebElement> menuItems = chromeDriver.findElements(By.cssSelector("li#app- span.name"));
         for (int i=0; i<menuItems.size(); i++) {

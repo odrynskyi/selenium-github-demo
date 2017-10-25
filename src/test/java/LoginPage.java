@@ -19,7 +19,7 @@ public class LoginPage {
         chromeDriver.findElement(By.cssSelector("input[name=username]")).sendKeys("admin");
         chromeDriver.findElement(By.cssSelector("input[name=password]")).sendKeys("admin");
         chromeDriver.findElement(By.cssSelector("button[name=login]")).click();
-        chromeDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        chromeDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @AfterClass
