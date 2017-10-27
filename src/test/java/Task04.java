@@ -30,12 +30,12 @@ public class Task04 {
 
     @Test
     public void CampaignElementsInAllBrowsers() {
-        CheckCampaingElements(chromeDriver = new ChromeDriver());
-        CheckCampaingElements(firefoxDriver = new FirefoxDriver());
-        CheckCampaingElements(iExplorerDriver = new InternetExplorerDriver());
+        CheckCampaignElements(chromeDriver = new ChromeDriver());
+        CheckCampaignElements(firefoxDriver = new FirefoxDriver());
+        CheckCampaignElements(iExplorerDriver = new InternetExplorerDriver());
     }
 
-    public void CheckCampaingElements(WebDriver browserDriver) {
+    public void CheckCampaignElements(WebDriver browserDriver) {
 
         browserDriver.get("http://localhost/litecart");
         WebElement productNameMainLocator = browserDriver.findElement(By.cssSelector("div#box-campaigns .name"));
@@ -57,16 +57,16 @@ public class Task04 {
         String regularPricePage = regularPriceLocatorPage.getAttribute("textContent");
         String regularPriceColorPage = regularPriceLocatorPage.getCssValue("color");
 
-        Assert.assertEquals(productNameMain, productNamePage);
-        Assert.assertEquals(salePriceMain, salePricePage);
-        Assert.assertEquals(regularPriceMain, regularPricePage);
-        Assert.assertEquals(salePriceColorMain, salePriceColorPage);
+        Assert.assertEquals("Product Name on the main page differs from Product Name on the product page.", productNameMain, productNamePage);
+        Assert.assertEquals("Sale Price on the main page differs from Sale Price on the product page.", salePriceMain, salePricePage);
+        Assert.assertEquals("Regular Price on the main page differs from Regular Price on the product page.", regularPriceMain, regularPricePage);
+        Assert.assertEquals("Sale Price color on the main page differs from Sale Price color on the product page.", salePriceColorMain, salePriceColorPage);
         if (browserDriver == firefoxDriver) {
-            Assert.assertEquals(regularPriceColorMain, "rgb(119, 119, 119)");
-            Assert.assertEquals(regularPriceColorPage, "rgb(102, 102, 102)");
+            Assert.assertEquals("Regular Price color on the main page differs from expected.", regularPriceColorMain, "rgb(119, 119, 119)");
+            Assert.assertEquals("Regular Price color on the Product page differs from expected.", regularPriceColorPage, "rgb(102, 102, 102)");
         } else {
-            Assert.assertEquals(regularPriceColorMain, "rgba(119, 119, 119, 1)");
-            Assert.assertEquals(regularPriceColorPage, "rgba(102, 102, 102, 1)");
+            Assert.assertEquals("Regular Price color on the Main page differs from expected.", regularPriceColorMain, "rgba(119, 119, 119, 1)");
+            Assert.assertEquals("Regular Price color on the Product page differs from expected.", regularPriceColorPage, "rgba(102, 102, 102, 1)");
         }
         browserDriver.quit();
 
