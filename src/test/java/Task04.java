@@ -9,9 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
-
 import java.util.concurrent.TimeUnit;
-
 
 public class Task04{
     public static WebDriver chromeDriver;
