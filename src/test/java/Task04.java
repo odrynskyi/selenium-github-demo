@@ -31,6 +31,7 @@ public class Task04{
         firefoxDriver = null;
         chromeDriver = null;
     }
+
     @Test
     public void CheckCampaignElementsInChromeBrowser(){
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -139,7 +140,5 @@ public class Task04{
         Assert.assertEquals("Regular Price color on the Main page differs from expected.", "rgb(119, 119, 119)", regularPriceColorMain);
         Assert.assertEquals("Regular Price color on the Product page differs from expected.", "rgb(102, 102, 102)", regularPriceColorPage );
         Assert.assertEquals("Regular Price strike on the Main page differs from expected.", regularPriceTextStrikeMain, regularPriceTextStrikePage);
-
     }
-
 }
