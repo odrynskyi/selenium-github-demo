@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Task07 {
 
-
     public static WebDriver chromeDriver;
     private static boolean isElementPresent(By locator) {
         return chromeDriver.findElements(locator).size() > 0;
@@ -34,12 +33,6 @@ public class Task07 {
             chromeDriver.findElement(By.name("login")).click();
         }
         chromeDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-    }
-
-    @AfterClass
-    public static void stop(){
-        chromeDriver.quit();
-        chromeDriver = null;
     }
 
     @Test
