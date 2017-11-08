@@ -1,12 +1,9 @@
-
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
-
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +20,10 @@ public class Task05 {
     }
     @BeforeClass
     public static void start(){
-        //ChromeDriverManager.getInstance().setup();
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("start-maximized");
-        chromeDriver = new ChromeDriver();
+        ChromeDriverManager.getInstance().setup();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("start-maximized");
+        chromeDriver = new ChromeDriver(chromeOptions);
         chromeDriver.get("http://localhost/litecart/admin");
         if(isElementPresent(By.name("login"))){
             chromeDriver.findElement(By.name("username")).sendKeys("admin");
@@ -98,6 +95,8 @@ public class Task05 {
         //}
         //Assert.assertTrue(b.contains("Gold Duck"));
     }
+
+    //Auxilary method
     public String ProductId(){
         String uniqueId = UUID.randomUUID().toString().substring(0, 3);
         String productId = "Gold Duck_" + uniqueId;
