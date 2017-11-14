@@ -9,54 +9,59 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.EventListener;
+
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 public class Task08 {
-    public static EventFiringWebDriver chromeDriver;
+    public static EventFiringWebDriver driver;
+    private static WebDriverWait wait;
     private static boolean isElementPresent(By locator) {
-        return chromeDriver.findElements(locator).size() > 0;
+        return driver.findElements(locator).size() > 0;
     }
     @BeforeClass
     public static void start(){
         ChromeDriverManager.getInstance().setup();
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("start-maximized");
-        chromeDriver = new EventFiringWebDriver(new ChromeDriver());
-        chromeDriver.register(new MyListener());
-        chromeDriver.get("http://localhost/litecart/admin");
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("start-maximized");
+        driver = new EventFiringWebDriver(new ChromeDriver(chromeOptions));
+        wait = new WebDriverWait(driver, 10);
+        driver.register(new MyListener());
+        driver.get("http://localhost/litecart/admin");
         if(isElementPresent(By.name("login"))){
-            chromeDriver.findElement(By.name("username")).sendKeys("admin");
-            chromeDriver.findElement(By.name("password")).sendKeys("admin");
-            chromeDriver.findElement(By.name("login")).click();
+            driver.findElement(By.name("username")).sendKeys("admin");
+            driver.findElement(By.name("password")).sendKeys("admin");
+            driver.findElement(By.name("login")).click();
         }
-        chromeDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        wait.until((WebDriver d) -> d.findElement(By.cssSelector("#sidebar")));
     }
 
     @AfterClass
     public static void stop(){
-        chromeDriver.quit();
-        chromeDriver = null;
+        driver.quit();
+        driver = null;
     }
+
     @Test
     public void MenuItems(){
-        List<WebElement> menuItems = chromeDriver.findElements(By.cssSelector("li#app- span.name"));
+        List<WebElement> menuItems = driver.findElements(By.cssSelector("li#app- span.name"));
         for (int i=0; i<menuItems.size(); i++) {
-            chromeDriver.findElement(By.cssSelector("li#app-:nth-child(" + (i+1) +")")).click();
+            driver.findElement(By.cssSelector("li#app-:nth-child(" + (i+1) +")")).click();
 
-            if (chromeDriver.findElements(By.cssSelector("ul.docs")).size() == 0)
+            if (driver.findElements(By.cssSelector("ul.docs")).size() == 0)
             {
-                Assert.assertTrue("The title is not shown on the page.", chromeDriver.findElement(By.cssSelector("h1")).isDisplayed());
+                Assert.assertTrue("The h1 is not shown on the page.", driver.findElement(By.cssSelector("h1")).isDisplayed());
             }
             else
             {
-                List<WebElement> subMenuItems = chromeDriver.findElements(By.cssSelector("ul.docs li"));
+                List<WebElement> subMenuItems = driver.findElements(By.cssSelector("ul.docs li"));
                 for (int j=0; j<subMenuItems.size(); j++) {
-                    chromeDriver.findElement(By.cssSelector("ul.docs li:nth-child(" + (j+1) +")")).click();
-                    Assert.assertTrue("The title is not shown on the page.", chromeDriver.findElement(By.cssSelector("h1")).isDisplayed());
+                    driver.findElement(By.cssSelector("ul.docs li:nth-child(" + (j+1) +")")).click();
+                    Assert.assertTrue("The h1 is not shown on the page.", driver.findElement(By.cssSelector("h1")).isDisplayed());
                 }
             }
         }
@@ -75,7 +80,7 @@ public class Task08 {
 
         @Override
         public void onException(Throwable throwable, WebDriver driver){
-            File tempFile = ((TakesScreenshot) chromeDriver).getScreenshotAs(OutputType.FILE);
+            File tempFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             try {
                 Files.copy(tempFile, new File("screen.png"));
 
