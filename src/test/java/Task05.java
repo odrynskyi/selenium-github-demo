@@ -48,7 +48,7 @@ public class Task05 {
         driver.findElement(By.cssSelector("li#app-:nth-child(2)")).click();
         driver.findElement(By.cssSelector("td#content div a:nth-child(2)")).click();
 
-        //New Product>>General
+        //New Product >> General tab
         driver.findElement(By.cssSelector("input[type=radio]")).click();
         driver.findElement(By.name("name[en]")).sendKeys(productId);
         driver.findElement(By.name("code")).sendKeys("1001");
