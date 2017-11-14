@@ -20,6 +20,7 @@ public class Task05 {
     private static boolean isElementPresent(By locator) {
         return driver.findElements(locator).size() > 0;
     }
+
     @BeforeClass
     public static void start(){
         ChromeDriverManager.getInstance().setup();
