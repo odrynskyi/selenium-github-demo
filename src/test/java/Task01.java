@@ -20,8 +20,6 @@ public class Task01 {
 
     @Parameterized.Parameter
     public WebDriver driver;
-    private String baseURL = "http://localhost/litecart/en/checkout";
-    //By searchField = By.xpath("//*[@id='lst-ib']");
     By searchField = By.cssSelector("input[id='lst-ib']");
 
     public WebDriverWait wait;
