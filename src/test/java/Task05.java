@@ -106,6 +106,6 @@ public class Task05 {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("gold_duck.jpg").getFile());
         fileField.sendKeys(file.getAbsolutePath());
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 }
