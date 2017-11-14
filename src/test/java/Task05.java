@@ -14,10 +14,10 @@ import java.util.concurrent.TimeUnit;
 public class Task05 {
 
     public static WebDriver driver;
-    public static WebDriverWait wait;
-    public static String productDescription = "Duck is the common name for a large number of species in the waterfowl family Anatidae, " +
+    private static WebDriverWait wait;
+    private static String productDescription = "Duck is the common name for a large number of species in the waterfowl family Anatidae, " +
             "which also includes swans and geese. Ducks are divided among several subfamilies in the family Anatidae.";
-    public static boolean isElementPresent(By locator) {
+    private static boolean isElementPresent(By locator) {
         return driver.findElements(locator).size() > 0;
     }
     @BeforeClass
@@ -95,10 +95,9 @@ public class Task05 {
     }
 
     //Auxilary method
-    public String ProductId(){
+    private String ProductId(){
         String uniqueId = UUID.randomUUID().toString().substring(0, 4);
-        String productId = "Gold Duck_" + uniqueId;
-        return productId;
+        return "Gold Duck_" + uniqueId;
     }
 
     private void addNewImage(){
